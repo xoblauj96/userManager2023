@@ -12,6 +12,10 @@ export class APIService {
         if (k === Keys.superadminkey) return true;
         else return false;
     }
+
+    static clone(data: any){
+        return JSON.parse(JSON.stringify(data));
+    }
 }
 
 enum Keys {

@@ -12,7 +12,8 @@ app.use(bodyParser.json());
 
 dbconnection.authenticate().then(r=>{
     console.log("connect to database success");
-    app.put('/admin/createUser',UserController.checkAdminAuthorizeToken, UserController.createUser)
+    app.put('/admin/createUser',UserController.checkAdminAuthorizeToken, UserController.createUser);
+    app.get('/getUsers',UserController.getUserDetails)
 })
 
 

@@ -16,11 +16,8 @@ export class UserController {
         try {
             const user = req.body as UserModel;
             delete user.id;
-
             dbconnection.transaction().then(transaction => {
                 userEntity.findOne({ where: { userName: user.userName, phoneNumber: user.phoneNumber }, transaction }).then(async r => {
-                    console.log(r);
-                    
                     if (r) {
                         await transaction.rollback();
                         res.send(APIService.errRes('User exist'));
@@ -35,7 +32,27 @@ export class UserController {
             })
 
         } catch (error) {
+            console.log(error)
+        }
+    }
 
+
+    static getUserDetails(req: Request, res: Response){
+        try {
+            userEntity.findAll().then(r=>{
+                const users = r.map((v)=>{
+                    const u = APIService.clone(v);
+                    delete u.role;
+                    delete u.password;
+                    return u as UserModel;
+                })
+                res.send(APIService.okRes(users));
+            }).catch(err=>{
+                console.error(err);
+            })
+        } catch (error) {
+            console.error(error);
+            
         }
     }
 }
