@@ -8,8 +8,8 @@ export class APIService {
         return { data, message, status }
     }
 
-    static validateSuperAdmin(k: string): boolean{
-        if(k=== Keys.superadminkey) return true;
+    static validateSuperAdmin(k: string): boolean {
+        if (k === Keys.superadminkey) return true;
         else return false;
     }
 }
