@@ -5,6 +5,12 @@ export class BaseMemberModel extends BaseModel{
     password?: string;
     phoneNumber?: string;
 
-    // validPassword: (password: string) => boolean;
-    // hashPassword: (password: string) => boolean;
+    validPassword: (password: string) => boolean;
+    hashPassword: (password: string) => boolean;
+    // constructor() { 
+    //     super();
+    //     // Initialization inside the constructor
+    //     this.validPassword: (password: string) => boolean;
+    //     hashPassword:(password: string) => boolean;
+    //  }
 }
